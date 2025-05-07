@@ -11,9 +11,9 @@ public class DBUtil {
 	//DB연결
 	public static Connection getConnection() {
 		Connection conn = null;
-		String url = "jdbc:oracle:thin:@192.168.0.184:1521:xe";
-		String userid = "tea";
-		String userpass = "1234";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String userid = "hr";
+		String userpass = "hr";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
