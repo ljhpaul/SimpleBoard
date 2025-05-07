@@ -14,6 +14,7 @@ public class DBUtil {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String userid = "hr";
 		String userpass = "hr";
+		// 수정
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
