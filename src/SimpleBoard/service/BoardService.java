@@ -1,5 +1,9 @@
 package SimpleBoard.service;
 
+import java.util.List;
+
+
+
 import SimpleBoard.dao.BoardDAO;
 import SimpleBoard.dto.BoardDTO;
 
@@ -14,7 +18,18 @@ public class BoardService {
 	}
 	
 	//2.목록조회(selectList)
-	
+
+	public List<BoardDTO> selectList() {
+		List<BoardDTO> list = DAO.selectList();
+		return list;
+	}
+
+	public int update(int id, String content) {
+		int reusultCount = DAO.update(id, content);
+		return reusultCount;
+		
+		
+	}
 	
 	
 	//3.글상세조회(selectOne)

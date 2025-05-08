@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import SimpleBoard.dto.BoardDTO;
 import SimpleBoard.util.DBUtil;
@@ -43,7 +46,38 @@ public class BoardDAO {
 	}
     
 	//2.목록조회(selectList)
+	public List<BoardDTO> selectList() {
+		List<BoardDTO> boardlist = new ArrayList<BoardDTO>();
+		conn = DBUtil.getConnection();
+		try {
+			String sql = "select * from board";
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				BoardDTO dto = makeBoard(rs);
+				boardlist.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, st, rs);
+		}
+		
+		return boardlist;
+	}
 	
+	private BoardDTO makeBoard(ResultSet rs) throws SQLException {
+		BoardDTO dto = BoardDTO.builder()
+			.id(rs.getInt(1))
+			.writer(rs.getString(2))
+			.title(rs.getString(3))
+			.content(rs.getString(4))
+			.createdDate(rs.getString(5))
+			.build();
+		return dto;
+	}
+	
+
 	
 	
 	//3.글상세조회(selectOne)
@@ -51,11 +85,30 @@ public class BoardDAO {
 	
 	
 	//4.글수정(update)
+	public int update(int id, String content) {
+		conn = DBUtil.getConnection();
+		
+		String sql = "UPDATE BOARD SET CONTENT = ?, createdDate = to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss')"
+				+ "WHERE ID = ?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1,content);
+			pst.setInt(2,id);
+			
+			resultCount = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultCount;
+		
+	}
 	
 	
 	
 	//5.글삭제(delete)
-	
 	
 	
 }

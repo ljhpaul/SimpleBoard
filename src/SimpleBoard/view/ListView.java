@@ -1,5 +1,9 @@
 package SimpleBoard.view;
 
+import java.util.List;
+
+import SimpleBoard.dto.BoardDTO;
+import SimpleBoard.service.BoardService;
 
 public class ListView {
 	
@@ -9,6 +13,14 @@ public class ListView {
         System.out.println("=========================");
         System.out.print("작업>> ");
 	}
+
+	public void f_selectList(List<BoardDTO> list) {
+		for(BoardDTO b : list) {
+			System.out.println(b.getId() + " / " + b.getTitle() + " / " + b.getWriter() + " / " + b.getContent() + b.getCreatedDate());
+			
+			System.out.println(" ");
+		
+	}
 	
-	
+	}
 }
