@@ -1,4 +1,5 @@
 # SimpleBoard
+<<<<<<< HEAD
 
 - 프로젝트 개요
 
@@ -124,3 +125,5 @@
         
     - 담당 branch :  **feature/detail-update-delete**
 
+=======
+>>>>>>> branch 'main' of https://github.com/ljhpaul/SimpleBoard.git
