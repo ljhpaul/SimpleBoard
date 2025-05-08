@@ -57,6 +57,7 @@ public class BoardDAO {
 		
 		try {
 			pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				dto = makeDTO(rs);
