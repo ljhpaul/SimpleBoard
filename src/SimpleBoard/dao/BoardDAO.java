@@ -47,15 +47,87 @@ public class BoardDAO {
 	
 	
 	//3.글상세조회(selectOne)
+	public BoardDTO selectOne(int id) {
+		BoardDTO dto = null;
+		Connection conn = DBUtil.getConnection();
+		ResultSet rs = null;
+		String sql = """
+				select * from board where id = ?
+				""";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				dto = makeDTO(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return dto;
+		}
 	
 	
 	
 	//4.글수정(update)
-	
+	public int update(BoardDTO dto) {
+		resultCount = 0;
+		String sql = """
+				update board
+				set writer = ?, title = ?, content =?
+				where id = ?
+				""";
+		
+		
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, dto.getWriter());
+			pst.setString(2, dto.getTitle());
+			pst.setString(3, dto.getContent());
+			pst.setInt(4, dto.getId());
+			resultCount = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+	}
+		
+		return resultCount;
+	}
 	
 	
 	//5.글삭제(delete)
+	public int delete(int id) {
+		String sql = """
+				delete from board where id = ?
+				""";
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			resultCount = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return resultCount;
+	}
 	
-	
+	public BoardDTO makeDTO(ResultSet rs) throws SQLException {
+		BoardDTO dto = BoardDTO.builder()
+				.writer(rs.getString(1))
+				.title(rs.getString(2))
+				.content(rs.getString(3))
+				.build();
+		
+		return dto;
+	}
 	
 }
