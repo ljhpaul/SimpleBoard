@@ -5,31 +5,38 @@ import java.util.Scanner;
 import SimpleBoard.dto.BoardDTO;
 
 public class WriteView {
+	
+	// ANSI 색상 코드 정의
+	public static final String RESET = "\u001B[0m";
+	public static final String GRAY = "\u001B[90m";
+	public static final String ACCENT = "\u001B[36m";  // 청록 (포인트 컬러)
+	public static final String BOLD = "\u001B[1m";
 
 	public BoardDTO writeMenu() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("작성자>> ");
-		String writer = sc.nextLine();
-		System.out.print("제목>> ");
-		String title = sc.nextLine();
-		System.out.print("내용>> ");
-		String content = sc.nextLine();
-		
-		BoardDTO dto = BoardDTO.builder()
-				.writer(writer)
-				.title(title)
-				.content(content)
-				.build();
-		
-		return dto;
+	    System.out.print(ACCENT + "작성자 >> " + RESET);
+	    String writer = sc.nextLine();
+	    
+	    System.out.print(ACCENT + "제목 >> " + RESET);
+	    String title = sc.nextLine();
+	    
+	    System.out.print(ACCENT + "내용 >> " + RESET);
+	    String content = sc.nextLine();
+	    
+	    BoardDTO dto = BoardDTO.builder()
+	            .writer(writer)
+	            .title(title)
+	            .content(content)
+	            .build();
+	    
+	    return dto;
 	}
 	
 	public void Message(int result, String ms) {
 		
-		String insertMessage = result + ms;
-		
-		System.out.println(insertMessage);
+	    String insertMessage = GRAY + result + " " + ms + RESET;
+	    System.out.println(insertMessage);
 		
 	}
 

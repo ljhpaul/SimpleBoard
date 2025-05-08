@@ -28,8 +28,6 @@ public class WriteController implements Controller {
 
 		BoardDTO dto = wv.writeMenu();
 
-		System.out.println(dto);
-
 		return dto;
 	}
 
