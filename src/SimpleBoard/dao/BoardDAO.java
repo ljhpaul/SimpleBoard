@@ -85,15 +85,16 @@ public class BoardDAO {
 	
 	
 	//4.글수정(update)
-	public int update(int id, String content) {
+	public int update(BoardDTO boardDTO) {
 		conn = DBUtil.getConnection();
 		
-		String sql = "UPDATE BOARD SET CONTENT = ?, createdDate = to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss')"
+		String sql = "UPDATE BOARD SET CONTENT = ?, TITLE = ?,createdDate = to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss')"
 				+ "WHERE ID = ?";
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1,content);
-			pst.setInt(2,id);
+			pst.setString(1,boardDTO.getContent());
+			pst.setString(2,boardDTO.getTitle());
+			pst.setInt(3, boardDTO.getId());
 			
 			resultCount = pst.executeUpdate();
 			
@@ -105,7 +106,27 @@ public class BoardDAO {
 		return resultCount;
 		
 	}
-	
+
+	public int delete(int id) {
+		conn = DBUtil.getConnection();
+		
+		String sql = """
+				DELETE FROM BOARD 
+				WHERE ID = ?
+				""";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1,id);
+			
+			resultCount = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultCount;
+	}
 	
 	
 	//5.글삭제(delete)

@@ -24,10 +24,21 @@ public class BoardService {
 		return list;
 	}
 
-	public int update(int id, String content) {
-		int reusultCount = DAO.update(id, content);
-		return reusultCount;
+	public String delete(int id) {
+		int resultCount = DAO.delete(id);
+		String result = "";
+		if(resultCount == 1) {
+			result = "글 삭제 성공";
+		}else {
+			result = "글 삭제 실패";
+		}
 		
+		return result;
+	}
+
+	public String update(BoardDTO boardDTO) {
+		int reusultCount = DAO.update(boardDTO);
+		return reusultCount;
 		
 	}
 	
