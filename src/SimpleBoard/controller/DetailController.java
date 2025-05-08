@@ -1,8 +1,8 @@
 package SimpleBoard.controller;
 
 import java.util.Scanner;
-
 import SimpleBoard.dao.BoardDAO;
+import SimpleBoard.controller.Controller;
 import SimpleBoard.dto.BoardDTO;
 import SimpleBoard.service.BoardService;
 import SimpleBoard.view.DetailView;
