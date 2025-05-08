@@ -73,7 +73,7 @@ public class BoardDAO {
 	
 	
 	
-	//4.글수정(update)
+	//4.글수정(update)  
 	public int update(BoardDTO dto) {
 		resultCount = 0;
 		String sql = """

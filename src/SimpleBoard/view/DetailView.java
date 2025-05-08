@@ -10,7 +10,7 @@ public class DetailView {
         System.out.println("=======================================");
         System.out.print("작업>> ");
 	}
-	
+	  
 	public static void display(String message) {
 		System.out.println("알림 : " + message);
 	}

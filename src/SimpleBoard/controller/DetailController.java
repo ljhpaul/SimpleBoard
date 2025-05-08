@@ -40,7 +40,7 @@ public class DetailController implements Controller {
 		DetailView.display(dto);
 		return id;
 	}
-
+  
 	private static void f_delete(int id) {
 		String result = boardService.delete(id);
 		DetailView.display(result);
