@@ -19,21 +19,21 @@ public class BoardService {
 	
 	//3.글상세조회(selectOne)
 	public BoardDTO selectOne(int id) {
-		BoardDTO board = BoardDAO.selectOne(id);
+		BoardDTO board = DAO.selectOne(id);
 		return board;
 	}
 	
 	
 	//4.글수정(update)
 	public int update(BoardDTO dto) {
-		int result = BoardDAO.update(dto);
+		int result = DAO.update(dto);
 		return result;
 	}
 	
 	
 	//5.글삭제(delete)
 	public int delete(int id) {
-		int result = BoardDAO.delete(id);
+		int result = DAO.delete(id);
 		return result;
 	}
 	

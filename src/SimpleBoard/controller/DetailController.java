@@ -2,6 +2,7 @@ package SimpleBoard.controller;
 
 import java.util.Scanner;
 
+import SimpleBoard.controller.Controller;
 import SimpleBoard.dto.BoardDTO;
 import SimpleBoard.view.DetailView;
 import SimpleBoard.view.ListView;
