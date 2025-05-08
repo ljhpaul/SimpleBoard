@@ -78,7 +78,7 @@ public class BoardDAO {
 		resultCount = 0;
 		String sql = """
 				update board
-				set writer = ?, title = ?, content =?
+				set title = ?, content =?
 				where id = ?
 				""";
 		
@@ -86,10 +86,9 @@ public class BoardDAO {
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, dto.getWriter());
-			pst.setString(2, dto.getTitle());
-			pst.setString(3, dto.getContent());
-			pst.setInt(4, dto.getId());
+			pst.setString(1, dto.getTitle());
+			pst.setString(2, dto.getContent());
+			pst.setInt(3, dto.getId());
 			resultCount = pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -124,9 +123,11 @@ public class BoardDAO {
 	
 	public BoardDTO makeDTO(ResultSet rs) throws SQLException {
 		BoardDTO dto = BoardDTO.builder()
-				.writer(rs.getString(1))
-				.title(rs.getString(2))
-				.content(rs.getString(3))
+				.id(rs.getInt("id"))
+				.writer(rs.getString("writer"))
+				.title(rs.getString("title"))
+				.content(rs.getString("content"))
+				.createdDate(rs.getString("createdDate"))
 				.build();
 		
 		return dto;
