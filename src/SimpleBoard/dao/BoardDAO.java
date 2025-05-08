@@ -107,6 +107,7 @@ public class BoardDAO {
 	
 	
 	
+
 	//4.글수정(update)
 	public int update(BoardDTO boardDTO) {
 		conn = DBUtil.getConnection();
@@ -118,9 +119,7 @@ public class BoardDAO {
 			pst.setString(1,boardDTO.getContent());
 			pst.setString(2,boardDTO.getTitle());
 			pst.setInt(3, boardDTO.getId());
-			
 			resultCount = pst.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,9 +155,11 @@ public class BoardDAO {
 
 	public BoardDTO makeDTO(ResultSet rs) throws SQLException {
 		BoardDTO dto = BoardDTO.builder()
-				.writer(rs.getString(1))
-				.title(rs.getString(2))
-				.content(rs.getString(3))
+				.id(rs.getInt("id"))
+				.writer(rs.getString("writer"))
+				.title(rs.getString("title"))
+				.content(rs.getString("content"))
+				.createdDate(rs.getString("createdDate"))
 				.build();
 		
 		return dto;

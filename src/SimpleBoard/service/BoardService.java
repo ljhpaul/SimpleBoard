@@ -44,7 +44,7 @@ public class BoardService {
 	}
 	
 	
-	//3.글상세조회(selectOne)
+	//3.글상세조회(selectOne)  
 	public BoardDTO selectOne(int id) {
 		BoardDTO dto = DAO.selectOne(id);
 		return dto;
