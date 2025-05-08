@@ -1,5 +1,9 @@
 package SimpleBoard.service;
 
+import java.util.List;
+
+
+
 import SimpleBoard.dao.BoardDAO;
 import SimpleBoard.dto.BoardDTO;
 import lombok.extern.java.Log;
@@ -15,7 +19,29 @@ public class BoardService {
 	}
 	
 	//2.목록조회(selectList)
-	
+
+	public List<BoardDTO> selectList() {
+		List<BoardDTO> list = DAO.selectList();
+		return list;
+	}
+
+	public String delete(int id) {
+		int resultCount = DAO.delete(id);
+		String result = "";
+		if(resultCount == 1) {
+			result = "글 삭제 성공";
+		}else {
+			result = "글 삭제 실패";
+		}
+		
+		return result;
+	}
+
+	public String update(BoardDTO boardDTO) {
+		int reusultCount = DAO.update(boardDTO);
+		return reusultCount;
+		
+	}
 	
 	
 	//3.글상세조회(selectOne)  
