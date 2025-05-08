@@ -7,6 +7,8 @@ public class FrontController {
         new FrontController().process();
     }
     
+    //main 재업
+    
     //WriteController → 글쓰기
     //ListController → 글 목록 조회
     //DetailController → 글 상세 조회, 수정, 삭제 기능 포함
