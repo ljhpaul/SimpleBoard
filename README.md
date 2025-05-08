@@ -1,6 +1,6 @@
 # SimpleBoard
 
-- 프로젝트 개요
+https://www.notion.so/SimpleBoard-1ecfe9d7c95a80539c31ef84bc0f0718
 
 ## 1. 프로젝트 전개
 
