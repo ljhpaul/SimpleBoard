@@ -69,7 +69,7 @@ public class BoardDAO {
 			DBUtil.dbDisconnect(conn, pst, rs);
 		}
 		return dto;
-		}
+	}
 	
 	
 	
@@ -104,6 +104,7 @@ public class BoardDAO {
 	
 	//5.글삭제(delete)
 	public int delete(int id) {
+		resultCount = 0;
 		String sql = """
 				delete from board where id = ?
 				""";
