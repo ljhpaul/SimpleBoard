@@ -56,5 +56,5 @@ public class DetailController implements Controller {
 		String result = boardService.update(dto);
 		DetailView.display(result);
 	}
-
+// 잠시 추가
 }
