@@ -81,6 +81,29 @@ public class BoardDAO {
 	
 	
 	//3.글상세조회(selectOne)
+	public BoardDTO selectOne(int id) {
+		BoardDTO dto = null;
+		Connection conn = DBUtil.getConnection();
+		ResultSet rs = null;
+		String sql = """
+				select * from board where id = ?
+				""";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				dto = makeDTO(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return dto;
+	}
 	
 	
 	
@@ -107,6 +130,7 @@ public class BoardDAO {
 		
 	}
 
+  //5.글삭제(delete)
 	public int delete(int id) {
 		conn = DBUtil.getConnection();
 		
@@ -129,7 +153,15 @@ public class BoardDAO {
 	}
 	
 	
-	//5.글삭제(delete)
-	
+
+	public BoardDTO makeDTO(ResultSet rs) throws SQLException {
+		BoardDTO dto = BoardDTO.builder()
+				.writer(rs.getString(1))
+				.title(rs.getString(2))
+				.content(rs.getString(3))
+				.build();
+		
+		return dto;
+	}
 	
 }
