@@ -6,11 +6,6 @@ public class FrontController {
 	public static void main(String[] args) {
 		new FrontController().process();
 	}
-
-	// WriteController → 글쓰기
-	// ListController → 글 목록 조회
-	// DetailController → 글 상세 조회, 수정, 삭제 기능 포함
-	
 	
 	// ANSI 색상 코드 정의
     public static final String RESET = "\u001B[0m";
